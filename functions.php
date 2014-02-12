@@ -32,3 +32,10 @@ add_image_size('category_image', 658, 113, true);
 
 //モールイメージ用画像サイズ設定
 add_image_size('pickup_thumbnail', 302, 123, true);
+
+//child pages shortcodeのcssのurlを変更
+function change_child_pages_shortcode_css(){
+ $url = get_template_directory_uri() . '/css/child-pages-shortcode/style.css';
+ return $url;
+}
+add_filter('child-pages-shortcode-stylesheet','change_child_pages_shortcode_css');
