@@ -7,7 +7,7 @@
 $sidebar_cat_list = array(
 	'event' => 2,
 	'malls' => 2,
-	'information' => 2,
+	'information' => 2
 	);
 
 foreach( $sidebar_cat_list as $sidebar_cat_name => $sidebar_cat_num ) :
@@ -38,9 +38,5 @@ endif;
 		</span>
 		</div>
 	</aside>
-<?php
-	wp_reset_query();
-endforeach;
-?>
         </div><!-- #primary end -->
       </section><!-- #sidebar end -->
