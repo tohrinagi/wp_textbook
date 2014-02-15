@@ -1,7 +1,15 @@
 <?php get_header(); ?>
      <section id="contents">
 	<header class="page-header">
-		<h1 class="page-title"><?php single_cat_title(); ?></h1>
+		<h1 class="page-title">
+<?php
+if( is_author() ) :
+	echo esc_html(get_the_author_meta('display_name', get_query_var('author')));
+else :
+	single_cat_title();
+endif;
+?>
+		</h1>
 	</header>
 	<div class="posts">
 <?php 
