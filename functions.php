@@ -1,11 +1,23 @@
 <?php
-add_custom_image_header('', '__return_false');
+//add_custom_image_header('', '__return_false');
 
-define('NO_HEADER_TEXT', true);
-define('HEADER_TEXTCOLOR', '');
-define('HEADER_IMAGE', '%s/images/top/main_image.png');
-define('HEADER_IMAGE_WIDTH', 950);
-define('HEADER_IMAGE_HEIGHT', 295);
+//define('NO_HEADER_TEXT', true);
+//define('HEADER_TEXTCOLOR', '');
+//define('HEADER_IMAGE', '%s/images/top/main_image.png');
+//define('HEADER_IMAGE_WIDTH', 950);
+//define('HEADER_IMAGE_HEIGHT', 295);
+
+add_theme_support(
+	'custom-header',
+	array(
+		'width' => 950,
+		'height' => 295,
+		'header-text' => false,
+		'default-image' => '%s/images/top/main_image.png',
+		'admin-head-callback' => '__return false',
+	)
+);
+
 
 //カスタムメニュー
 register_nav_menus(
@@ -125,4 +137,25 @@ function get_pickup_excerpt($excerpt) {
 
 function pickup_excerpt_length() {
  return 50;
+}
+
+//カテゴリー画像の表示
+//１．アイキャッチ画像が設定されている場合は、アイキャッチ画像を使用
+//２．アイキャッチ画像が設定されていない固定ページで、最上位の固定ページにアイキャッチ画像が設定されている場合は、そのアイキャッチ画像を使用
+//３．それ以外の場合は、デフォルトの画像を表示
+function the_category_image() {
+ global $post;
+ $image = "";
+
+ if( is_singular() && has_post_thumbnail() ) {
+  $image = get_the_post_thumbnail(null, 'category_image', array('id' => 'category_image') );
+ } elseif ( is_page() && has_post_thumbnail(array_pop(get_post_ancestors($post)))) {
+  $image = get_the_post_thumbnail(array_pop(get_post_ancestors($post)), 'category_image', array('id' => 'category_image' ) );
+ }
+
+ if($image == "" ) {
+  $src = get_template_directory_uri() . '/images/category/default.jpg';
+  $image = '<img src="' . $src . '"class="attachment-category_image wp-post-image" alt="" id="category_image" />';
+ }
+ echo $image;
 }

@@ -47,7 +47,7 @@
 	if (is_front_page()) :
 ?>
     <section id="branding">
-      <img src="<?php header_image(); ?>" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" alt="" />
+      <img src="<?php header_image(); ?>" width="<?php echo get_custom_header()->width; ?>" height="<?php echo get_custom_header()->height; ?>" alt="" />
     </section><!-- #branding end -->
 <?php
 	endif;
