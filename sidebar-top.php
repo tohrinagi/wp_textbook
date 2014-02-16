@@ -26,7 +26,7 @@ if( have_posts() ) :
 				<time class="entry-date" datetime="<?php the_time('Y-m-d'); ?>"><?php the_time(get_option('date-format')); ?></time>
 				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 				<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('small_thumbnail', array('alt' => the_title_attribute('echo=0'), 'title' => the_title_attribute('echo=0') ) ); ?></a>
-				<?php the_excerpt(); ?>
+				<?php the_short_excerpt(); ?>
 			</li>
 <?php
 	endwhile;
